@@ -42,7 +42,7 @@
     name: puppet
     state: latest
   register: puppet
-  when: install_puppet == True
+  when: install_puppet == "True"
 
 - name: Copy puppet.conf file from template
   template:
@@ -51,7 +51,7 @@
     owner: root
     group: root
     mode: 0644
-  when: (install_puppet == True and puppet.changed)
+  when: (install_puppet == "True" and puppet.changed)
 
 - name: Create puppet directories
   file:
@@ -63,24 +63,24 @@
   with_items:
     - "{{ puppet_logdir }}"
     - "{{ puppet_ssldir }}"
-  when: (install_puppet == True and puppet.changed)
+  when: (install_puppet == "True" and puppet.changed)
 
 - name: Start puppet service
   systemd:
     name: puppet
     state: started
     enabled: True
-  when: (install_puppet == True and puppet.changed)
+  when: (install_puppet == "True" and puppet.changed)
 
 - name: Run puppet agent
   shell: puppet agent -tv
   register: puppet_run_output
-  when: install_puppet == True
+  when: install_puppet == "True"
   ignore_errors: True
 
 - debug:
     msg: "INFO: Puppet run will fail if the puppet cert is not signed or autosigned in Satellite. Go to Satellite under infrastructure->capsules->capsule->actions->certificates. You should see certificate pending, sign it and re-run playbook"
-  when: puppet_run_output.rc != 0
+  when: (install_puppet == "True" and puppet_run_output.rc != 0)
 
 - name: upgrade all packages
   yum:
