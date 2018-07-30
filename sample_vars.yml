@@ -16,7 +16,6 @@ openstack_ip: <ip>
 openstack_project: admin
 
 ### OpenStack Managed Instance Settings ###
-satellite_ip: <ip>
 instance_name: rhel123
 instance_security_group: base
 instance_flavor: m2.tiny
@@ -24,6 +23,12 @@ instance_image: rhel75
 instance_ssh_key_name: admin
 instance_domain_name: novalocal
 instance_network: internal
+master_hostname: <satellite master short hostname>
+satellite_domain_name: <satellite master domain>
+satellite_ip: <satellite master ip>
+install_puppet: True
+puppet_logdir: /var/log/puppet
+puppet_ssldir: /var/lib/puppet/ssl
 
 ### Red Hat Subscription ###
 rhn_username: <user>
