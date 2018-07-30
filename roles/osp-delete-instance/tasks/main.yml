@@ -1,5 +1,5 @@
 - name: Remove Host from Satellite
-  shell: hammer host delete --name {{ master_hostname }}.{{ satellite_domain_name }}
+  shell: hammer host delete --name {{ instance_name  }}.{{ satellite_domain_name }}
 
 - name: Delete instance
   shell: openstack server delete {{ instance_name }}
