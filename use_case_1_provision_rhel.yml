@@ -3,7 +3,8 @@
   hosts: localhost
   become: false
   gather_facts: false
-  remote_user: "{{ ssh_user }}"
+### For Ansible without Tower
+#  remote_user: "{{ ssh_user }}"
   environment:
     OS_USERNAME: "{{ openstack_user }}"
     OS_PASSWORD: "{{ openstack_passwd }}"
@@ -26,7 +27,8 @@
   hosts: instance
   become: true
   gather_facts: true
-  remote_user: "{{ ssh_user }}"
+### For Ansible without Tower
+#  remote_user: "{{ ssh_user }}"
 
   tasks:
   - import_role:
