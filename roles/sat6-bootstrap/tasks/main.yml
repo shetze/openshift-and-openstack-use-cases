@@ -86,4 +86,4 @@
   yum:
     name: '*'
     state: latest
-  when: yum_update == True
+  when: yum_update == "True"
