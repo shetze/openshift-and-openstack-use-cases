@@ -12,9 +12,24 @@
   shell: "{{ openshift_cli }} new-project {{ project_name }} --display-name='{{ project_display_name }}' --description='{{ project_desc }}'"
   when: rocket_project_result|failed
 
+- name: check if service exists
+  shell: "{{ openshift_cli }} get service {{ mongodb_service_name }} -n {{ project_name }}"
+  register: install_mongodb
+  ignore_errors: true
+  chnaged_when: false
+
+- name: remove existing install if clean deployment requested
+  shell: |
+    {{ openshift_cli }} delete all,statefulset -l template=rocketchat -n {{ project_name }}
+    {{ openshift_cli }} delete pvc -l name=mongodb -n {{ project_name }}
+  when:
+    - install_mongodb|succeeded
+    - clean_deploy|bool
+
 - name: deploy rocket
   shell: |
     {{ openshift_cli }} new-app -f {{ role_path }}/files/rocket-template.yaml \
+        --param=APPLICATION_URL={{ application_url }} \
         --param=ROCKET_MEMORY_LIMIT={{ rocket_memory_limit }} \
         --param=MONGODB_SERVICE_NAME={{ mongodb_service_name }} \
         --param=MONGODB_INTERNAL_SERVICE_NAME={{ mongodb_internal_service_name }} \
@@ -27,5 +42,12 @@
         --param=MONGODB_REPLICAS={{ mongodb_replicas }} \
         --param=MONGODB_MEMORY_LIMIT={{ mongodb_memory_limit }} \
         -n {{ project_name }}
-  
-  
+  when: clean_deploy|bool or install_mongodb|failed
+
+- name: wait for application to become ready
+  uri:
+    url: http://{{ application_url }}
+    status_code: 200
+  register: result
+  until: result.status == 200
+  retries: 60
