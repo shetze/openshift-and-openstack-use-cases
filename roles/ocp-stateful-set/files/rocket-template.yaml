@@ -187,7 +187,6 @@ objects:
       app: rocketchat
     name: rocketchat
   spec:
-    host: ${APPLICATION_URL}
     port:
       targetPort: 3000-tcp
     to:
@@ -196,9 +195,6 @@ objects:
       weight: 100
     wildcardPolicy: None
 parameters:
-  - description: The exposed hostname that will route to the frontend service, if left blank a value will be defaulted.
-    displayName: Application Hostname
-    name: APPLICATION_URL
   - description: Maximum amount of memory the frontend container can use
     displayName: Memory Limit
     name: ROCKET_MEMORY_LIMIT

@@ -4,8 +4,6 @@
       project_display_name: Rocket-Chat
       project_desc: A Showcase for StatefulSets on OpenShift
 
-      application_url: rocketchat-{{ project_name }}.{{ default_subdomain }}
-
       mongodb_service_name: mongodb
       mongodb_internal_service_name: mongodb-internal
       mongodb_database: mongodb

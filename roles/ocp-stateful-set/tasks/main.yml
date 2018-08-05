@@ -16,7 +16,7 @@
   shell: "{{ openshift_cli }} get service {{ mongodb_service_name }} -n {{ project_name }}"
   register: install_mongodb
   ignore_errors: true
-  chnaged_when: false
+  changed_when: false
 
 - name: remove existing install if clean deployment requested
   shell: |
@@ -29,7 +29,6 @@
 - name: deploy rocket
   shell: |
     {{ openshift_cli }} new-app -f {{ role_path }}/files/rocket-template.yaml \
-        --param=APPLICATION_URL={{ application_url }} \
         --param=ROCKET_MEMORY_LIMIT={{ rocket_memory_limit }} \
         --param=MONGODB_SERVICE_NAME={{ mongodb_service_name }} \
         --param=MONGODB_INTERNAL_SERVICE_NAME={{ mongodb_internal_service_name }} \
@@ -44,9 +43,14 @@
         -n {{ project_name }}
   when: clean_deploy|bool or install_mongodb|failed
 
+- name: get application url
+  shell: |
+    {{ openshift_cli }} get route rocketchat -o jsonpath='{.spec.host}' -n {{ project_name }}
+  register: application_url
+
 - name: wait for application to become ready
   uri:
-    url: http://{{ application_url }}
+    url: http://{{ application_url.stdout }}
     status_code: 200
   register: result
   until: result.status == 200
