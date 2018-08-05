@@ -1,6 +1,4 @@
 ---
-## Hello Install
-
 - name: check if project {{ project_name }} exists
   shell: "{{ openshift_cli }} get project {{ project_name }}"
   register: project_result
@@ -19,7 +17,7 @@
 
 - name: remove existing install if clean deployment requested
   shell: |
-    {{ openshift_cli }} delete all -l template=hello -n {{ project_name }}
+    {{ openshift_cli }} delete all -l app={{ service_name }} -n {{ project_name }}
   when:
     - install|succeeded
     - clean_deploy|bool
