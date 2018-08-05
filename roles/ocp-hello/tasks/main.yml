@@ -1,7 +1,6 @@
 ---
 ## Hello Install
 
-# Create project
 - name: check if project {{ project_name }} exists
   shell: "{{ openshift_cli }} get project {{ project_name }}"
   register: project_result
@@ -38,7 +37,7 @@
 
 - name: get application url
   shell: |
-    {{ openshift_cli }} get route hello -o jsonpath='{.spec.host}' -n {{ project_name }}
+    {{ openshift_cli }} get route {{ service_name }} -o jsonpath='{.spec.host}' -n {{ project_name }}
   register: application_url
 
 - name: wait for application to become ready
