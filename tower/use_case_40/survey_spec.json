@@ -11,7 +11,7 @@
             "choices": "",
             "new_question": true,
             "variable": "user",
-            "question_name": "Enter User Name",
+            "question_name": "Enter New OpenStack User Name",
             "type": "text"
         },
         {
@@ -23,8 +23,8 @@
             "choices": "",
             "new_question": true,
             "variable": "passwd",
-            "question_name": "Enter User Password",
-            "type": "text"
+            "question_name": "Enter New OpenStack User Password",
+            "type": "password"
         },
         {
             "required": true,
@@ -35,7 +35,7 @@
             "choices": "",
             "new_question": true,
             "variable": "project",
-            "question_name": "Enter User Project Name",
+            "question_name": "Enter New OpenStack User Project Name",
             "type": "text"
         },
         {
@@ -46,7 +46,7 @@
             "required": true,
             "choices": "admin\n_member_",
             "variable": "role",
-            "question_name": "Enter User ROle",
+            "question_name": "Enter User Role",
             "type": "multiplechoice"
         }
 
