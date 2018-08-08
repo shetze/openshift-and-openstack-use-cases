@@ -6,7 +6,3 @@
   tasks:
   - import_role:
       name: ocp-hello
-    vars:
-      openshift_cli: "oc"
-      clean_deploy: "false"
-      project_name: "hello"
