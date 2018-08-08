@@ -1,6 +1,6 @@
 ---
 - name: login to openshift
-  shell: "{{ openshift_cli }} login {{ openshift_url }} -u {{ openshift_user }} -p {{ openshift_password }}"
+  shell: "{{ openshift_cli }} login {{ openshift_url }} -u {{ openshift_user }} -p {{ openshift_password }} --insecure-skip-tls-verify=true"
 
 - name: check if project {{ project_name }} exists
   shell: "{{ openshift_cli }} get project {{ project_name }}"
