@@ -1,0 +1,54 @@
+{
+    "description": "",
+    "name": "",
+    "spec": [
+        {
+            "required": true,
+            "min": 0,
+            "default": "",
+            "max": 1024,
+            "question_description": "",
+            "choices": "",
+            "new_question": true,
+            "variable": "user",
+            "question_name": "Enter User Name",
+            "type": "text"
+        },
+        {
+            "required": true,
+            "min": 0,
+            "default": "",
+            "max": 1024,
+            "question_description": "",
+            "choices": "",
+            "new_question": true,
+            "variable": "passwd",
+            "question_name": "Enter User Password",
+            "type": "text"
+        },
+        {
+            "required": true,
+            "min": 0,
+            "default": "",
+            "max": 1024,
+            "question_description": "",
+            "choices": "",
+            "new_question": true,
+            "variable": "project",
+            "question_name": "Enter User Project Name",
+            "type": "text"
+        },
+        {
+            "question_description": "",
+            "min": null,
+            "default": "_member_",
+            "max": null,
+            "required": true,
+            "choices": "admin\n_member_",
+            "variable": "role",
+            "question_name": "Enter User ROle",
+            "type": "multiplechoice"
+        }
+
+    ]
+}
