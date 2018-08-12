@@ -1,8 +1,8 @@
 - name: check if host already registered
-  command: subscription-manager list --available --match-installed --pool-only
+  command: subscription-manager status
   register: subs_result
   failed_when: false
-  changed_when: "'This system is not yet registered' in subs_result.stderr"
+  changed_when: "'Current' in subs_result.stderr"
 
 - name: Unregister hosts
   command: subscription-manager unregister
