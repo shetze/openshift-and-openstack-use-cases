@@ -1,0 +1,9 @@
+# project - name of new project
+# role - role user should have in project
+# user - name of user to create
+# passwd - user passwd
+
+project: test
+role: _member_
+user: test
+passwd: redhat

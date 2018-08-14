@@ -1,6 +1,3 @@
-- debug:
-    msg: "test123 {{ yum_update_security_only }}"
-
 - name: Update Packages
   yum:
     name: '*'
