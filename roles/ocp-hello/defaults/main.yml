@@ -8,5 +8,5 @@
       service_name: hello
       greeting: hello
       who: world
-      replicas: '2'
+      replicas: '1'
 
