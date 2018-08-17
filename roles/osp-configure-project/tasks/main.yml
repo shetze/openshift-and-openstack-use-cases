@@ -20,7 +20,12 @@
 
 - name: Create OpenStack Keypair
   shell: openstack keypair create --private-key /root/{{ project }}.pem {{ project }}
+  register: create_keypair_file
   when: openstack_network_create.rc == 0
+
+- name: Cleanup private key file
+  shell: rm -f /root/{{ project }}.pem
+  when: create_keypair_file.rc == 0
 
 - name: Create Security Group Base
   shell: openstack security group create base --description "Allow base ports"
