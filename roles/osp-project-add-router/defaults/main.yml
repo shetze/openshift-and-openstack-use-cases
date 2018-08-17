@@ -1,0 +1,5 @@
+# project - name of new project
+# router - Name of OpenStack router to add project network to
+
+project: test
+router: mgmt_router

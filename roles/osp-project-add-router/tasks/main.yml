@@ -1,0 +1,2 @@
+- name: Add Project Network to Router
+  shell: openstack router add subnet {{ router }} {{ project }}_subnet
