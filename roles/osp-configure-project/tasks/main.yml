@@ -13,11 +13,11 @@
   when: openstack_network_create.rc == 0
 
 - name: Create Private Keypair File
-  shell: echo {{ private_key }} >> /root/{{ project }}.pem
+  shell: echo {{ private_key }} >> /tmp/{{ project }}.pem
   when: openstack_network_create.rc == 0
 
 - name: Create OpenStack Keypair
-  shell: openstack keypair create --private-key /root/{{ project }}.pem {{ project }}
+  shell: openstack keypair create --private-key /tmp/{{ project }}.pem {{ project }}
   register: create_keypair_file
   when: openstack_network_create.rc == 0
 
