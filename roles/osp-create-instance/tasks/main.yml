@@ -1,11 +1,11 @@
 - name: Set instance network
   set_fact:
-    instance_network: "{{ project }}"
+    instance_network: "{{ openstack_project }}"
   when: instance_network is undefined
 
 - name: Set instance ssh key
   set_fact:
-    instance_ssh_key_name: "{{ project }}"
+    instance_ssh_key_name: "{{ openstack_project }}"
   when: instance_ssh_key_name is undefined
 
 - name: Set instance security group
