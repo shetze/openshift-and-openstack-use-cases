@@ -2,8 +2,10 @@
 # role - role user should have in project
 # user - name of user to create
 # passwd - user passwd
+# tier - free, small, medium or large
 
 project: test
 role: _member_
 user: test
 passwd: redhat
+tier: free
