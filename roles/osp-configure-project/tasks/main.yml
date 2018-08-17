@@ -6,7 +6,7 @@
 - name: Create OpenStack Project Network
   shell: openstack network create {{ project }}
   register: openstack_network_create
-  when: openstack_network_show.rc == 0
+  when: openstack_network_show.rc != 0
 
 - name: Create OpenStack Project Subnet
   shell: openstack subnet create --network {{ project }} --allocation-pool start={{ start_range }},end={{ end_range }} --dns-nameserver 213.133.98.98 --subnet-range {{ cidr }} {{ project }}_subnet
@@ -29,15 +29,21 @@
 
 - name: Create Security Group Base
   shell: openstack security group create base --description "Allow base ports"
+  register: security_group_create
+  when: openstack_network_create.rc == 0
 
 - name: Allow 22 Ingress to Base Group
   shell: openstack security group rule create --protocol TCP --dst-port 22 --remote-ip 0.0.0.0/0 base
+  when: security_group_create.rc == 0
 
 - name: Allow 80 Ingress to Base Group
   shell: openstack security group rule create --protocol TCP --dst-port 80 --remote-ip 0.0.0.0/0 base
+  when: security_group_create.rc == 0
 
 - name: Allow 443 Ingress to Base Group
   shell: openstack security group rule create --protocol TCP --dst-port 443 --remote-ip 0.0.0.0/0 base
+  when: security_group_create.rc == 0
 
 - name: Allow ICMP Ingress to Base Group
   shell: openstack security group rule create --protocol ICMP --remote-ip 0.0.0.0/0 base
+  when: security_group_create.rc == 0
