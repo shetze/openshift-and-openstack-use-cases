@@ -6,8 +6,8 @@
 # instance_network - internal network to use for instance
 
 instance_name: rhel123
-instance_security_group:
+# instance_security_group:
 instance_flavor: m2.tiny
 instance_image: rhel75
-instance_ssh_key_name:
-instance_network:
+# instance_ssh_key_name:
+# instance_network:
