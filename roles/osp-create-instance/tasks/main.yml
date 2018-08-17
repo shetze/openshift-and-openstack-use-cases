@@ -1,11 +1,11 @@
 - name: Set instance network
   set_fact:
-    instance_network: {{ project }}
+    instance_network: "{{ project }}"
   when: instance_network is undefned
 
 - name: Set instance ssh key
   set_fact:
-    instance_ssh_key_name: {{ project }}
+    instance_ssh_key_name: "{{ project }}"
   when: instance_ssh_key_name is undefned
 
 - name: Set instance security group
@@ -14,7 +14,7 @@
   when:  instance_security_group is undefned
 
 - name: Check if instance exists
-  shell:  openstack server show {{ instance_name }}
+  shell: openstack server show {{ instance_name }}
   register: instance_output
   ignore_errors: true
 
