@@ -21,7 +21,7 @@
     msg: "Private Key of Keypair"
 
 - debug:
-    msg: "create_keypair_file.stdout"
+    msg: "{{ create_keypair_file }}.stdout"
 
 - name: Create Security Group Base
   shell: openstack security group create base --description "Allow base ports"
