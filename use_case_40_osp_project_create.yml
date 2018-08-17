@@ -20,7 +20,7 @@
 - name: Configure OpenStack Project
   hosts: localhost
   connection: local
-  become: no
+  become: yes
   gather_facts: no
   environment:
     OS_USERNAME: "{{ user }}"
