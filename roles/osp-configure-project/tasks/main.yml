@@ -13,7 +13,9 @@
   when: openstack_network_create.rc == 0
 
 - name: Create Private Keypair File
-  shell: echo {{ private_key }} >> /tmp/{{ project }}.pem
+  blockinfile:
+    block: "{{ private_key }}"
+    dest: "/tmp/{{ project }}.pem"
   when: openstack_network_create.rc == 0
 
 - name: Create OpenStack Keypair
