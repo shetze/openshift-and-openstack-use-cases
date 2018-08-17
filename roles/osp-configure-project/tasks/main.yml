@@ -1,6 +1,12 @@
+- name: Check if network exists
+  shell: openstack show network {{ project }}
+  ignore_errors: yes
+  register: openstack_network_show
+
 - name: Create OpenStack Project Network
   shell: openstack network create {{ project }}
   register: openstack_network_create
+  when: openstack_network_show.rc == 0
 
 - name: Create OpenStack Project Subnet
   shell openstack subnet create --network {{ project }} --allocation-pool start={{ start_range }},end={{ end_range }} --dns-nameserver 213.133.98.98 --subnet-range {{ cidr }} {{ project }}_subnet
