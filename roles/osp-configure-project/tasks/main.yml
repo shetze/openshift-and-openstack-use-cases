@@ -12,7 +12,12 @@
   shell: openstack subnet create --network {{ project }} --allocation-pool start={{ start_range }},end={{ end_range }} --dns-nameserver 213.133.98.98 --subnet-range {{ cidr }} {{ project }}_subnet
   when: openstack_network_create.rc == 0
 
-- name: Create Private Keypair File
+- name: Create Keypair File
+  file:
+    path: /tmp/{{ project }}.pem
+    state: touch
+
+- name: Add Private Key to File
   blockinfile:
     block: "{{ private_key }}"
     dest: "/tmp/{{ project }}.pem"
