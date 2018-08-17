@@ -85,8 +85,5 @@
 - name: Add Role to User
   shell: openstack role add --project {{ project }} --user {{ user }} {{ role }}
 
-#- name: Add admin user to project
-#  shell: openstack role add --project {{ project }} --user {{ lookup('env','OS_USERNAME') }} admin
-
 - name: Add Quota to Project
   shell: openstack quota set --backup-gigabytes {{ backup_gigabytes }} --backups {{ backups }} --cores {{ cores }} --floating-ips {{ floating_ips }} --gigabytes {{ gigabytes }} --instances {{ instances }} --networks {{ networks }} --ports {{ ports }} --ram {{ ram }} --routers {{ routers }} --secgroup-rules {{ secgroup_rules }} --secgroups {{ secgroups }} --snapshots {{ snapshots }} --subnets {{ subnets }} --volumes {{ volumes }} {{ project }}
