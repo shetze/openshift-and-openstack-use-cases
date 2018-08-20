@@ -4,6 +4,7 @@
 
 - name: Add Private Key to File
   shell: echo {{ user_public_key }} > /tmp/user.pub
+  delegate_to: localhost
 
 #- name: Add Private Key to File
 #  blockinfile:
