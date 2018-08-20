@@ -2,29 +2,25 @@
   user:
     name: "{{ instance_user }}"
 
-- name: Create Keypair File
-  file:
-    path: /tmp/user.pub
-    state: touch
+- name: Add Private Key to File
+  blockinfile:
+    create: true
+    block: "{{ user_public_key }}"
+    dest: /tmp/user.pub
 
- - name: Add Private Key to File
-   blockinfile:
-     block: "{{ user_public_key }}"
-     dest: /tmp/user.pub
-
-  - name: Add user key to authorized keys
-    authorized_key: 
-      user: "{{ instance_user }}" 
-      key: "{{ lookup('file', '/tmp/user.pub') }}"
-      state: present
+- name: Add user key to authorized keys
+  authorized_key: 
+    user: "{{ instance_user }}" 
+    key: "{{ lookup('file', '/tmp/user.pub') }}"
+    state: present
 
 #- name: Cleanup private key file
 #  shell: rm -f /root/{{ project }}.pem
 #  when: create_keypair_file.rc == 0
 
- - name: Allow managed user sudo
-    lineinfile:
-      dest: "/etc/sudoers/{{ instance_user }}"
-      line="{{ instance_user }} ALL=(ALL) NOPASSWD: ALL" 
-      create: yes 
-      state: present
+- name: Allow managed user sudo
+  lineinfile:
+    dest: "/etc/sudoers/{{ instance_user }}"
+    line="{{ instance_user }} ALL=(ALL) NOPASSWD: ALL" 
+    create: yes 
+    state: present
