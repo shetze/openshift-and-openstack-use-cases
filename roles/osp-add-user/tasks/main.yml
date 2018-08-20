@@ -5,7 +5,7 @@
   - name: Add user key to authorized keys
     authorized_key: 
       user: "{{ instance_user }}" 
-      key: "{{ user_public_key }}" 
+      key: '{{ user_public_key }}'
       state: present
 
  - name: Allow managed user sudo
