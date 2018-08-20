@@ -33,7 +33,7 @@
 
   tasks:
   - import_role:
-      name: osp-configure-project
+      name: osp-configure-managed-project
 
 - name: Add Project Network to Management Router
   hosts: localhost
