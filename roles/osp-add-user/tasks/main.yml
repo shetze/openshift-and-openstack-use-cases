@@ -11,11 +11,14 @@
   file:
     path: "/home/{{ instance_user }}/.ssh"
     state: directory
+    owner: "{{ instance_user }}"
 
 - name: create empty authorized_keys file
   file:
     path: "/home/{{ instance_user }}/.ssh/authorized_keys"
     state: touch
+    owner: "{{ instance_user }}"
+    mode: 0600
 
 - name: Add public key to authorized keys file
   lineinfile:
