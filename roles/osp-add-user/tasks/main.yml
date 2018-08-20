@@ -41,7 +41,7 @@
 
 - name: Allow managed user sudo
   lineinfile:
-    dest: "/etc/sudoers/{{ instance_user }}"
+    dest: "/etc/sudoers.d/{{ instance_user }}"
     line: "{{ instance_user }} ALL=(ALL) NOPASSWD: ALL" 
     create: yes 
     state: present
