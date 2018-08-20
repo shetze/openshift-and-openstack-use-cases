@@ -3,11 +3,14 @@
     name: "{{ instance_user }}"
 
 - name: Add Private Key to File
-  blockinfile:
-    create: true
-    block: "{{ user_public_key }}"
-    dest: /tmp/user.pub
-    marker: False
+  shell: echo {{ user_public_key }} > /tmp/user.pub
+
+#- name: Add Private Key to File
+#  blockinfile:
+#    create: true
+#    block: "{{ user_public_key }}"
+#    dest: /tmp/user.pub
+#    marker: False
 
 - name: Add user key to authorized keys
   authorized_key: 
