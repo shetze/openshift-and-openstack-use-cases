@@ -3,7 +3,7 @@
     name: "{{ instance_user }}"
 
 - name: Add Private Key to File
-  shell: echo {{ user_public_key }} > /home/cloud-user/user.pub
+  shell: echo "{{ user_public_key }}" > /home/cloud-user/user.pub
   delegate_to: localhost
 
 #- name: Add Private Key to File
