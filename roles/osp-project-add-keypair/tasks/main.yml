@@ -1,0 +1,2 @@
+- name: Create OpenStack Keypair
+  shell: openstack keypair create --private-key /home/cloud-user/admin.pem {{ project }}

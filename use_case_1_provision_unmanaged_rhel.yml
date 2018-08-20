@@ -21,3 +21,14 @@
   - import_role:
       name: osp-inventory-instance
     tags: ['inventory']
+
+- name: Bootstrap Instance
+  hosts: instance
+  become: true
+  gather_facts: true
+  remote_user: "{{ ssh_user }}"
+
+  tasks:
+  - import_role:
+      name: sat6-bootstrap
+    tags: ['boostrap']

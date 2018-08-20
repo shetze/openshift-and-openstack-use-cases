@@ -1,5 +1,5 @@
 ---
-- name: Deploy Satellite Infrastructure
+- name: Inventory RHEL Environment
   hosts: localhost
   connection: local
   become: no
