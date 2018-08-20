@@ -2,10 +2,25 @@
   user:
     name: "{{ instance_user }}"
 
-- name: Add Private Key to File
-  shell: echo "{{ user_public_key }}" > /root/user.pub
-  delegate_to: localhost
-  become: yes 
+#- name: Add Private Key to File
+#  shell: echo "{{ user_public_key }}" > /root/user.pub
+#  delegate_to: localhost
+#  become: yes 
+
+- name: Create ssh directory
+  file:
+    path: "/home/{{ instance_user }}/.ssh"
+    state: directory
+
+- name: create empty authorized_keys file
+  file:
+    path: "/home/{{ instance_user }}/.ssh/authorized_keys"
+    state: touch
+
+- name: Add public key to authorized keys file
+  lineinfile:
+    path: "/home/{{ instance_user }}/.ssh/authorized_keys"
+    line: "{{ user_public_key }}"
 
 #- name: Add Private Key to File
 #  blockinfile:
@@ -14,11 +29,11 @@
 #    dest: /tmp/user.pub
 #    marker: False
 
-- name: Add user key to authorized keys
-  authorized_key: 
-    user: "{{ instance_user }}" 
-    key: "{{ lookup('file', '/tmp/user.pub') }}"
-    state: present
+#- name: Add user key to authorized keys
+#  authorized_key: 
+#    user: "{{ instance_user }}" 
+#    key: "{{ lookup('file', '/tmp/user.pub') }}"
+#    state: present
 
 #- name: Cleanup private key file
 #  shell: rm -f /root/{{ project }}.pem
