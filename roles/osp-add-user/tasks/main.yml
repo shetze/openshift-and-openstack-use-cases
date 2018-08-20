@@ -1,0 +1,16 @@
+- name: "Create user accounts and add users to groups"
+  user:
+    name: "{{ instance_user }}"
+
+  - name: Add user key to authorized keys
+    authorized_key: 
+      user: "{{ instance_user }}" 
+      key: "{{ user_public_key }}" 
+      state: present
+
+ - name: Allow managed user sudo
+    lineinfile:
+      dest: "/etc/sudoers/{{ instance_user }}"
+      line="{{ instance_user }} ALL=(ALL) NOPASSWD: ALL" 
+      create: yes 
+      state: present

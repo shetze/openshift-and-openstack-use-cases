@@ -22,6 +22,17 @@
       name: osp-inventory-instance
     tags: ['inventory']
 
+- name: Create user account
+  hosts: instance
+  become: yes
+  gather_facts: false
+  remote_user: "{{ ssh_user }}"
+
+  tasks:
+  - import_role:
+      name: osp-add-user
+    tags: ['user']
+
 #- name: Bootstrap Instance
 #  hosts: instance
 #  become: true

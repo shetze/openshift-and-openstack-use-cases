@@ -1,0 +1,5 @@
+# instance_user - user to create in instance
+# user_public_key - public ssh key of user
+
+instance_user: <user>
+user_public_key: <public key>
