@@ -8,9 +8,9 @@
     state: touch
 
  - name: Add Private Key to File
-  blockinfile:
-    block: "{{ user_public_key }}"
-    dest: /tmp/user.pub
+   blockinfile:
+     block: "{{ user_public_key }}"
+     dest: /tmp/user.pub
 
   - name: Add user key to authorized keys
     authorized_key: 
