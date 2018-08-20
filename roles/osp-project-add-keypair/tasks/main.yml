@@ -1,8 +1,0 @@
-- name: Check if admin keypair exists
-  shell: openstack keypair show {{ project }}
-  register: openstack_keypair_output
-  ignore_errors: yes
-
-- name: Create OpenStack Keypair
-  shell: openstack keypair create --private-key /home/cloud-user/admin.pem {{ project }}
-  when openstack_keypair_output.rc != 0

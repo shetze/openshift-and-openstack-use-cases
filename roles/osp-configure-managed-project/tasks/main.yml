@@ -12,10 +12,6 @@
   shell: openstack subnet create --network {{ project }} --allocation-pool start={{ start_range }},end={{ end_range }} --dns-nameserver 213.133.98.98 --subnet-range {{ cidr }} {{ project }}_subnet
   when: openstack_network_create.rc == 0
 
-- name: Create OpenStack Keypair
-  shell: openstack keypair create --private-key /home/cloud-user/admin.pem {{ project }}
-  when: openstack_network_create.rc == 0
-
 - name: Create Security Group Base
   shell: openstack security group create base --description "Allow base ports"
   register: security_group_create
