@@ -3,9 +3,9 @@
     name: "{{ instance_user }}"
 
 - name: Add Private Key to File
-  shell: echo "{{ user_public_key }}" > /home/cloud-user/user.pub
+  shell: echo "{{ user_public_key }}" > /root/user.pub
   delegate_to: localhost
-  become: no
+  become: yes 
 
 #- name: Add Private Key to File
 #  blockinfile:
