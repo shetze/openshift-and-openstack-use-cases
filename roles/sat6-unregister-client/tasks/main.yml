@@ -1,0 +1,2 @@
+- name: Remove Host from Satellite
+  shell: hammer host delete --name {{ instance_name  }}.{{ satellite_domain_name }}

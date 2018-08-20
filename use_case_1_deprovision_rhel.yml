@@ -29,7 +29,7 @@
       name: sat6-debootstrap
     tags: ['deboostrap']
 
-- name: Remove instance
+- name: Remove Client from Satellite
   hosts: master
   become: true
   gather_facts: no
@@ -45,6 +45,24 @@
 
   tasks:
   - import_role:
-      name: osp-delete-instance
-    tags: ['undeploy']
+      name: sat6-unregister-client
+    tags: ['unregister']
 
+- name: Remove instance
+  hosts: localhost
+  become: true
+  gather_facts: no
+  remote_user: "{{ ssh_user }}"
+  environment:
+    OS_USERNAME: "{{ openstack_user }}"
+    OS_PASSWORD: "{{ openstack_passwd }}"
+    OS_AUTH_URL: http://{{ openstack_ip }}:5000/v3
+    OS_PROJECT_NAME: "{{ openstack_project }}"
+    OS_USER_DOMAIN_NAME: Default
+    OS_PROJECT_DOMAIN_NAME: Default
+    OS_IDENTITY_API_VERSION: 3
+
+  tasks:
+  - import_role:
+      name: osp-delete-instance
+    tags: ['delete']
