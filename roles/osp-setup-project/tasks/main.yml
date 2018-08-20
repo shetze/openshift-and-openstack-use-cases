@@ -77,7 +77,7 @@
 - name: Check if OpenStack project exists
   shell: openstack project show {{ project }}
   ignore_errors: yes
-  register openstack_project_show_output
+  register: openstack_project_show_output
 
 - name: Create OpenStack Project
   shell: openstack project create {{ project }}
