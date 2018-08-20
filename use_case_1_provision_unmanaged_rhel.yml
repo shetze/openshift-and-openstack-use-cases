@@ -22,13 +22,28 @@
       name: osp-inventory-instance
     tags: ['inventory']
 
-- name: Bootstrap Instance
+- name: Create user account
   hosts: instance
-  become: true
-  gather_facts: true
+  become: yes
+  gather_facts: false
   remote_user: "{{ ssh_user }}"
 
+  vars:
+    allow_sudo: True
+
   tasks:
+
   - import_role:
-      name: sat6-bootstrap
-    tags: ['boostrap']
+      name: osp-add-user
+    tags: ['user']
+
+#- name: Bootstrap Instance
+#  hosts: instance
+#  become: true
+#  gather_facts: true
+#  remote_user: "{{ ssh_user }}"
+#
+#  tasks:
+#  - import_role:
+#      name: sat6-bootstrap
+#    tags: ['boostrap']
