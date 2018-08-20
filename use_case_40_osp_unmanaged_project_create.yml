@@ -33,4 +33,4 @@
 
   tasks:
   - import_role:
-      name: osp-setup-project
+      name: osp-project-add-keypair
