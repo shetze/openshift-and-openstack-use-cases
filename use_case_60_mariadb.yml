@@ -6,6 +6,7 @@
   remote_user: "{{ ssh_user }}"
 
   vars:
+    skip: true
     mariadb_bind_address: '0.0.0.0'
     mariadb_root_password: '{{ root_passwd }}'
     mariadb_databases:
