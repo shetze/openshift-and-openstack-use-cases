@@ -23,10 +23,5 @@
         log-output: file
 
   tasks:
-  - name: run ansible galaxy
-    shell: ansible-galaxy install bertvv.mariadb
-    ignore_errors: yes
-    delegate_to: localhost
-
   - import_role:
       name: bertvv.mariadb
