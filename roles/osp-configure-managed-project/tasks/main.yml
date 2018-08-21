@@ -1,5 +1,5 @@
 - name: Check if network exists
-  shell: openstack show network {{ project }}
+  shell: openstack network show {{ project }}
   ignore_errors: yes
   register: openstack_network_show
 
