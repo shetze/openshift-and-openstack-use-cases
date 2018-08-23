@@ -1,7 +1,7 @@
 unset OS_SERVICE_TOKEN
 export OS_USERNAME={{ openstack_user }}
 export OS_PASSWORD='{{ openstack_passwd }}'
-export OS_AUTH_URL=http://{{ openstack_ip }}:5000/v3
+export OS_AUTH_URL='{{ openstack_auth_url }}'
 export PS1='[\u@\h \W(keystone_admin)]\$ '
 
 export OS_PROJECT_NAME=admin
