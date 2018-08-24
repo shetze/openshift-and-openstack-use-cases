@@ -9,7 +9,7 @@
   register: keypair_show
 
 - name: Create OpenStack Keypair
-  shell: openstack keypair create {{ project }} >/home/cloud-user/keypairs/{{ project }}.pem
+  shell: openstack keypair create {{ project }} >/home/cloud-user/{{ project }}.pem
   when: keypair_show.rc != 0
 
 - name: Check if network exists
