@@ -1,5 +1,5 @@
 ---
-- name: Deploy new client
+- name: Deploy Instance
   hosts: localhost
   become: false
   gather_facts: false
