@@ -1,8 +1,3 @@
-- name: Check if network exists
-  shell: openstack network show {{ project }}
-  ignore_errors: yes
-  register: openstack_network_show
-
 #- name: Fail if network exists
 #  fail: 
 #    msg: "Network {{ project }} already exists."
@@ -16,6 +11,11 @@
 - name: Create OpenStack Keypair
   shell: openstack keypair create {{ project }} >/home/cloud-user/keypairs/{{ project }}.pem
   when: keypair_show.rc != 0
+
+- name: Check if network exists
+  shell: openstack network show {{ project }}
+  ignore_errors: yes
+  register: openstack_network_show
 
 - name: Create OpenStack Project Network
   shell: openstack network create {{ project }}
