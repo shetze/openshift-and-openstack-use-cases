@@ -26,7 +26,7 @@
   environment:
     OS_USERNAME: "{{ user }}"
     OS_PASSWORD: "{{ passwd }}"
-    OS_AUTH_URL: http://{{ openstack_ip }}:5000/v3
+    OS_AUTH_URL: "{{ openstack_auth_url }}"
     OS_PROJECT_NAME: "{{ project }}"
     OS_USER_DOMAIN_NAME: Default
     OS_PROJECT_DOMAIN_NAME: Default
@@ -44,7 +44,7 @@
   environment:
     OS_USERNAME: "{{ openstack_user }}"
     OS_PASSWORD: "{{ openstack_passwd }}"
-    OS_AUTH_URL: http://{{ openstack_ip }}:5000/v3
+    OS_AUTH_URL: "{{ openstack_auth_url }}"
     OS_PROJECT_NAME: "{{ openstack_project }}"
     OS_USER_DOMAIN_NAME: Default
     OS_PROJECT_DOMAIN_NAME: Default
