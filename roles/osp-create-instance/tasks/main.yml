@@ -19,5 +19,5 @@
   ignore_errors: true
 
 - name: Create OpenStack Instance
-  shell: openstack server create --flavor {{ instance_flavor }} --image "{{ instance_image }}" --network {{ instance_network }} --key-name {{ instance_ssh_key_name }} --security-group {{ instance_security_group }} {{ instance_name }} --wait
+  shell: openstack server create --flavor {{ instance_flavor }} --image {{ instance_image }} --network {{ instance_network }} --key-name {{ instance_ssh_key_name }} --security-group {{ instance_security_group }} {{ instance_name }} --wait
   when: instance_output.rc != 0
