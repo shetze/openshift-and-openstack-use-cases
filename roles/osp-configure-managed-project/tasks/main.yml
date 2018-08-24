@@ -30,21 +30,20 @@
 
 - name: Create Security Group Base
   shell: openstack security group create {{ project }}_base --description "Allow base ports"
-  register: security_group_create
   when: security_group_show.rc != 0
 
 - name: Allow 22 Ingress to Base Group
   shell: openstack security group rule create --protocol TCP --dst-port 22 --remote-ip 0.0.0.0/0 {{ project }}_base
-  when: security_group_create.rc == 0
+  when: security_group_show.rc != 0
 
 - name: Allow 80 Ingress to Base Group
   shell: openstack security group rule create --protocol TCP --dst-port 80 --remote-ip 0.0.0.0/0 {{ project }}_base
-  when: security_group_create.rc == 0
+  when: security_group_show.rc != 0
 
 - name: Allow 443 Ingress to Base Group
   shell: openstack security group rule create --protocol TCP --dst-port 443 --remote-ip 0.0.0.0/0 {{ project }}_base
-  when: security_group_create.rc == 0
+  when: security_group_show.rc != 0
 
 - name: Allow ICMP Ingress to Base Group
   shell: openstack security group rule create --protocol ICMP --remote-ip 0.0.0.0/0 {{ project }}_base
-  when: security_group_create.rc == 0
+  when: security_group_show.rc != 0
