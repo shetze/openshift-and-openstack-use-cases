@@ -1,2 +1,12 @@
+- name: Check if router exists
+  shell: openstack router show {{ project }}_router
+  ignore_errors: yes
+  register: router_show
+
+- name: Create a new router
+  shell: openstack router create --no-ha {{ project }}_router
+  when: router_show.rc != 0
+
 - name: Add Project Network to Router
-  shell: openstack router add subnet {{ router }} {{ project }}_subnet
+  shell: openstack router add subnet {{ project }}_router {{ project }}_subnet
+  when: router_show.rc != 0
