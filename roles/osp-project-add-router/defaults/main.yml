@@ -1,7 +1,5 @@
 # project - name of new project
-# router - Name of OpenStack router to add project network to
 # public_network - Public Floating IP Network
 
 project: test
-router: mgmt_router
 public_network: public
