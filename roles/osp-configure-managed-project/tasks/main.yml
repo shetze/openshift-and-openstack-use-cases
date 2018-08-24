@@ -23,10 +23,15 @@
   when: openstack_subnet_show.rc != 0
 #  when: (openstack_network_create.rc == 0 and openstack_subnet_show.rc != 0)
 
+- name: Check if security group exists
+  shell: openstack security group show {{ project }}_base
+  register: security_group_show
+  ignore_errors: yes
+
 - name: Create Security Group Base
-  shell: openstack security group create base --description "Allow base ports"
+  shell: openstack security group create {{ project }}_base --description "Allow base ports"
   register: security_group_create
-  when: openstack_network_create.rc == 0
+  when: security_group_show.rc != 0
 
 - name: Allow 22 Ingress to Base Group
   shell: openstack security group rule create --protocol TCP --dst-port 22 --remote-ip 0.0.0.0/0 base
