@@ -13,7 +13,7 @@
     OS_PROJECT_DOMAIN_NAME: Default
     OS_IDENTITY_API_VERSION: 3
     OS_INTERFACE: public
-    OS_CACERT: /etc/ssl/certs/ca-bundle.crt
+    OS_CACERT: "{{ cacert }}"
 
   tasks:
   - import_role:
