@@ -3,18 +3,23 @@
   ignore_errors: yes
   register: openstack_network_show
 
-- name: Fail if network exists
-  fail: "Network already exists in project {{ project }}."
-  when: openstack_network_show.rc = 0
+#- name: Fail if network exists
+#  fail: "Network already exists."
+#  when: openstack_network_show.rc == 0
 
 - name: Create OpenStack Project Network
   shell: openstack network create {{ project }}
   register: openstack_network_create
   when: openstack_network_show.rc != 0
 
+- name: Check if subnet exists
+  shell: openstack subnet show {{ project }}_subnet
+  ignore_errors: yes
+  register: openstack_subnet_show
+
 - name: Create OpenStack Project Subnet
   shell: openstack subnet create --network {{ project }} --allocation-pool start={{ start_range }},end={{ end_range }} --dns-nameserver 213.133.98.98 --subnet-range {{ cidr }} {{ project }}_subnet
-  when: openstack_network_create.rc == 0
+  when: (openstack_network_create.rc == 0 and openstack_subnet_show.rc != 0)
 
 - name: Create Security Group Base
   shell: openstack security group create base --description "Allow base ports"
