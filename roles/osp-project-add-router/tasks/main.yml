@@ -14,7 +14,3 @@
 - name: Add Public Network as Gateway in Router
   shell: openstack router set --external-gateway {{ public_network }} {{ project }}_router
   when: router_show.rc != 0
-
-- name: Add admin network for tenant access
-  shell: openstack router add subnet {{ project }}_subnet {{ shared_router }}
-  when: use_shared_router == True
