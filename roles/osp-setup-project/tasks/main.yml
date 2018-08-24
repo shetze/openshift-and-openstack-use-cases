@@ -80,7 +80,7 @@
   register: openstack_project_show_output
 
 - name: Create OpenStack Project
-  shell: openstack project create --parent admin {{ project }}
+  shell: openstack project create {{ project }} --parent admin
   register: openstack_project_output
   when: openstack_project_show_output.rc != 0
 
