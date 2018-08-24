@@ -11,7 +11,7 @@
 - name: Check if keypair exists
   shell: openstack keypair show {{ project }}
   ignore_errors: yes
-  register_ keypair_show
+  register: keypair_show
 
 - name: Create OpenStack Keypair
   shell: openstack keypair create {{ project }} >/home/cloud-user/keypairs/{{ project }}.pem
