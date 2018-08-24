@@ -10,3 +10,7 @@
 - name: Add Project Network to Router
   shell: openstack router add subnet {{ project }}_router {{ project }}_subnet
   when: router_show.rc != 0
+
+- name: Add Public Network as Gateway in Router
+  shell: openstack router set --external-gateway {{ public_network }} {{ project }}_router
+  when: router_show.rc != 0
