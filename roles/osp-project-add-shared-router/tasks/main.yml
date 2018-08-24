@@ -1,0 +1,8 @@
+- name: Check if router exists
+  shell: openstack router show {{ shared_router }}
+  ignore_errors: yes
+  register: router_show
+
+- name: Add admin network for tenant access
+  shell: openstack router add subnet {{ project }}_subnet {{ shared_router }}
+  when: (use_shared_router == True and router_show.rc != 0)
