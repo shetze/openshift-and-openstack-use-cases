@@ -3,6 +3,10 @@
   ignore_errors: yes
   register: openstack_network_show
 
+- name: Fail if network exists
+  fail: "Network already exists in project {{ project }}."
+  when: openstack_network_show.rc = 0
+
 - name: Create OpenStack Project Network
   shell: openstack network create {{ project }}
   register: openstack_network_create
