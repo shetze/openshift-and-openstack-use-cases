@@ -97,10 +97,6 @@
   shell: openstack role add --project {{ project }} --user {{ user }} {{ role }}
   when: (openstack_project_show_output.rc != 0 and openstack_project_output.rc == 0)
 
-- name: Add Role to Admin User
-  shell: openstack role add --project {{ project }} --user admin admin
-  when: (openstack_project_show_output.rc != 0 and openstack_project_output.rc == 0)
-
 - name: Add Quota to Project
   shell: openstack quota set --backup-gigabytes {{ backup_gigabytes }} --backups {{ backups }} --cores {{ cores }} --floating-ips {{ floating_ips }} --gigabytes {{ gigabytes }} --instances {{ instances }} --networks {{ networks }} --ports {{ ports }} --ram {{ ram }} --routers {{ routers }} --secgroup-rules {{ secgroup_rules }} --secgroups {{ secgroups }} --snapshots {{ snapshots }} --subnets {{ subnets }} --volumes {{ volumes }} {{ project }}
   when: (openstack_project_show_output.rc != 0 and openstack_project_output.rc == 0)
