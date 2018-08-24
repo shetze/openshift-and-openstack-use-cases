@@ -8,6 +8,15 @@
 #    msg: "Network {{ project }} already exists."
 #  when: openstack_network_show.rc == 0
 
+- name: Check if keypair exists
+  shell: openstack keypair show {{ project }}
+  ignore_errors: yes
+  register_ keypair_show
+
+- name: Create OpenStack Keypair
+  shell: openstack keypair create {{ project }} >/home/cloud-user/keypairs/{{ project }}.pem
+  when: keypair_show.rc != 0
+
 - name: Create OpenStack Project Network
   shell: openstack network create {{ project }}
   register: openstack_network_create
