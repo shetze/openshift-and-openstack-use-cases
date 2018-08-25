@@ -1,8 +1,3 @@
-#- name: Fail if network exists
-#  fail: 
-#    msg: "Network {{ project }} already exists."
-#  when: openstack_network_show.rc == 0
-
 - name: Check if network exists
   shell: openstack network show {{ project }}
   ignore_errors: yes
@@ -19,9 +14,8 @@
   register: openstack_subnet_show
 
 - name: Create OpenStack Project Subnet
-  shell: openstack subnet create --network {{ project }} --allocation-pool start={{ start_range }},end={{ end_range }} --dns-nameserver 213.133.98.98 --subnet-range {{ cidr }} {{ project }}_subnet
+  shell: openstack subnet create --network {{ project }} --allocation-pool start={{ start_range }},end={{ end_range }} --dns-nameserver {{ dns_server }} --subnet-range {{ cidr }} {{ project }}_subnet
   when: openstack_subnet_show.rc != 0
-#  when: (openstack_network_create.rc == 0 and openstack_subnet_show.rc != 0)
 
 - name: Check if security group exists
   shell: openstack security group show {{ project }}_base
