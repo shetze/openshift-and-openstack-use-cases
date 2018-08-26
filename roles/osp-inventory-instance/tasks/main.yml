@@ -10,7 +10,7 @@
 
 - debug:
     msg: "Instance ip {{ ip_output.stdout }}"
-  when: (debug == "True" and instance_output.rc == 0)
+  when: (debug and instance_output.rc == 0)
 
 - name: Add the instance to the inventory
   add_host:
@@ -38,4 +38,4 @@
 
 - debug:
     var: groups
-  when: (debug == "True" and instance_output.rc == 0)
+  when: (debug and instance_output.rc == 0)
