@@ -81,7 +81,8 @@
 - debug:
     msg: "INFO: Puppet run will fail if the puppet cert is not signed or autosigned in Satellite. Go to Satellite under infrastructure->capsules->capsule->actions->certificates. You should see certificate pending, sign it and re-run playbook"
   when: (install_puppet and puppet_run_output.rc != 0)
-
+  ignore_errors: True
+  
 - name: upgrade all packages
   yum:
     name: '*'
