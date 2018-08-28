@@ -78,9 +78,11 @@
   when: install_puppet 
   ignore_errors: True
 
-- debug:
-    msg: "INFO: Puppet run will fail if the puppet cert is not signed or autosigned in Satellite. Go to Satellite under infrastructure->capsules->capsule->actions->certificates. You should see certificate pending, sign it and re-run playbook"
-  when: (install_puppet and puppet_run_output.rc != 0)
+# disabled this because if the previous task didn't run, puppet_run_output is not declared and this one fails as well
+# - debug:
+#     msg: "INFO: Puppet run will fail if the puppet cert is not signed or autosigned in Satellite. Go to Satellite under infrastructure->capsules->capsule->actions->certificates. You should see certificate pending, sign it and re-run playbook"
+#   when: (install_puppet and puppet_run_output.rc != 0)
+#   ignore_errors: True
 
 - name: upgrade all packages
   yum:
