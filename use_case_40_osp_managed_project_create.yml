@@ -25,8 +25,8 @@
   become: no
   gather_facts: no
   environment:
-    OS_USERNAME: "{{ user }}"
-    OS_PASSWORD: "{{ passwd }}"
+    OS_USERNAME: "{{ openstack_user }}"
+    OS_PASSWORD: "{{ openstack_passwd }}"
     OS_AUTH_URL: "{{ openstack_auth_url }}"
     OS_PROJECT_NAME: "{{ project }}"
     OS_USER_DOMAIN_NAME: Default
