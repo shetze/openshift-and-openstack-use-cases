@@ -4,7 +4,7 @@
   register: openstack_network_show
 
 - name: Create OpenStack Project Network
-  shell: openstack network create {{ project }}
+  shell: openstack network create --project {{ project }} {{ project }}
   register: openstack_network_create
   when: openstack_network_show.rc != 0
 
@@ -14,7 +14,7 @@
   register: openstack_subnet_show
 
 - name: Create OpenStack Project Subnet
-  shell: openstack subnet create --network {{ project }} --allocation-pool start={{ start_range }},end={{ end_range }} --dns-nameserver {{ dns_server }} --subnet-range {{ cidr }} {{ project }}_subnet
+  shell: openstack subnet create --network {{ project }} --allocation-pool start={{ start_range }},end={{ end_range }} --dns-nameserver {{ dns_server }} --subnet-range {{ cidr }} --project {{ project }} {{ project }}_subnet
   when: openstack_subnet_show.rc != 0
 
 - name: Check if security group exists
