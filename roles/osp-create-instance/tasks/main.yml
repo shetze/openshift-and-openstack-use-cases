@@ -1,7 +1,7 @@
 - name: Set instance network
   set_fact:
     instance_network: "{{ openstack_project }}"
-  when: instance_network is undefined
+  when: instance_network is undefined or instance_network == ""
 
 #- name: Set instance ssh key
 #  set_fact:
