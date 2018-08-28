@@ -10,4 +10,4 @@
 
 - name: Add admin network for tenant access
   shell: openstack router add subnet {{ shared_router }} {{ project }}_subnet
-  when: (router_show.rc == 0 and port_show.rc != 0)
+  when: (router_show.rc == 0 and port_show.stdout == "")
