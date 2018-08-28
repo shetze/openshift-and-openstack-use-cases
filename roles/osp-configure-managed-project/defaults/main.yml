@@ -9,5 +9,3 @@ project: test
 start_range: 10.10.1.100
 end_range: 10.10.1.200
 cidr: 10.10.1.0/24
-dns_server: 213.133.98.98
-private_key: <private key>
