@@ -11,5 +11,5 @@ instance_security_group: base
 instance_flavor: m2.tiny
 instance_image: rhel75
 instance_ssh_key_name: admin
-instance_network: internal
+instance_network:
 openstack_project: test
