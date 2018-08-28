@@ -17,7 +17,7 @@
     state: installed
   with_items: "{{ mariadb_redhat_packages }}"
   tags: mariadb
-  when: ansible_distribution == 'Red Hat Enterprise Linux'
+  when: ansible_distribution == 'RedHat'
 
 - name: Install packages
   package:
