@@ -15,9 +15,17 @@
   package:
     name: "{{ item }}"
     state: installed
-  with_items: "{{ mariadb_packages }}"
+  with_items: "{{ mariadb_redhat_packages }}"
   tags: mariadb
   when: ansible_distribution == 'Red Hat Enterprise Linux'
+
+- name: Install packages
+  package:
+    name: "{{ item }}"
+    state: installed
+  with_items: "{{ mariadb_centos_packages }}"
+  tags: mariadb
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Fedora'
 
 - name: Ensure service is started
   service:

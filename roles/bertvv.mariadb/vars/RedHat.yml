@@ -1,9 +1,14 @@
 # roles/mariadb/vars/RedHat.yml
 ---
 
-mariadb_packages:
+mariadb_redhat_packages:
   - mariadb
   - mariadb-server
+  - MySQL-python
+
+mariadb_centos_packages:
+  - MariaDB
+  - MariaDB-server
   - MySQL-python
 
 mariadb_service: mariadb
