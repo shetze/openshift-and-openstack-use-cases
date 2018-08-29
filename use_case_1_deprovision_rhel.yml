@@ -54,7 +54,7 @@
 
 - name: Remove instance
   hosts: localhost
-  become: true
+  become: no
   gather_facts: no
   remote_user: "{{ ssh_user }}"
   environment:
