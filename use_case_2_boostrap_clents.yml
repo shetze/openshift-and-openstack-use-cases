@@ -1,6 +1,6 @@
 ---
-- name: Bootstrap Clients
-  hosts: clients
+- name: Bootstrap Client
+  hosts: "{{ target }}"
   become: true
   gather_facts: true
   remote_user: "{{ ssh_user }}"
@@ -9,4 +9,3 @@
   - import_role:
       name: sat6-bootstrap
     tags: ['boostrap']
-
