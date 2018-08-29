@@ -4,4 +4,4 @@
 
 - name: Remove Host from Satellite
   shell: hammer host delete --name {{ instance_name  }}
-  when: satellite_domain_name not defined
+  when: satellite_domain_name is not defined
