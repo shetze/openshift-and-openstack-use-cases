@@ -1,7 +1,7 @@
 ---
 - description: 
   buttons: submit,cancel
-  label: Create Unmanaged Project
+  label: Create OpenStack Managed Project User
   dialog_tabs:
   - description: 
     display: edit
@@ -143,7 +143,7 @@
           ae_attributes: {}
         dialog_field_responders: []
       - name: param_passwd
-        description: Password for the OpenStack User
+        description: Password for OpenStack User
         data_type: string
         notes: 
         notes_display: 
@@ -212,7 +212,7 @@
         read_only: 
         auto_refresh: 
         trigger_auto_refresh: 
-        visible: false
+        visible: true
         type: DialogFieldDropDownList
         resource_action:
           action: 
@@ -269,8 +269,165 @@
           ae_message: 
           ae_attributes: {}
         dialog_field_responders: []
+      - name: param_public_network
+        description: OpenStack Public Network for FLoating IPs
+        data_type: 
+        notes: 
+        notes_display: 
+        display: edit
+        display_method: 
+        display_method_options: {}
+        required: true
+        required_method: 
+        required_method_options: {}
+        default_value: 
+        values_method: 
+        values_method_options: {}
+        options:
+          :sort_by: description
+          :sort_order: ascending
+        label: Public Network
+        position: 5
+        validator_type: 
+        validator_rule: 
+        reconfigurable: true
+        dynamic: true
+        show_refresh_button: 
+        load_values_on_init: 
+        read_only: 
+        auto_refresh: 
+        trigger_auto_refresh: 
+        visible: true
+        type: DialogFieldDropDownList
+        resource_action:
+          action: 
+          resource_type: DialogField
+          ae_namespace: Integration/DynamicDialogs
+          ae_class: Methods
+          ae_instance: list_networks
+          ae_message: 
+          ae_attributes: {}
+        dialog_field_responders: []
+        values: 
+      - name: param_cidr
+        description: CIDR for new OpenStack Private Network
+        data_type: string
+        notes: 
+        notes_display: 
+        display: edit
+        display_method: 
+        display_method_options: {}
+        required: true
+        required_method: 
+        required_method_options: {}
+        default_value: 192.168.99.0/24
+        values: 
+        values_method: 
+        values_method_options: {}
+        options:
+          :protected: false
+        label: OpenStack Network CIDR
+        position: 6
+        validator_type: 
+        validator_rule: 
+        reconfigurable: true
+        dynamic: 
+        show_refresh_button: 
+        load_values_on_init: 
+        read_only: 
+        auto_refresh: 
+        trigger_auto_refresh: 
+        visible: true
+        type: DialogFieldTextBox
+        resource_action:
+          action: 
+          resource_type: DialogField
+          ae_namespace: 
+          ae_class: 
+          ae_instance: 
+          ae_message: 
+          ae_attributes: {}
+        dialog_field_responders: []
+      - name: param_start_range
+        description: First IP in Range for DHCP
+        data_type: string
+        notes: 
+        notes_display: 
+        display: edit
+        display_method: 
+        display_method_options: {}
+        required: true
+        required_method: 
+        required_method_options: {}
+        default_value: 192.168.99.100
+        values: 
+        values_method: 
+        values_method_options: {}
+        options:
+          :protected: false
+        label: OpenStack Private Network Range Starting IP
+        position: 7
+        validator_type: 
+        validator_rule: 
+        reconfigurable: true
+        dynamic: 
+        show_refresh_button: 
+        load_values_on_init: 
+        read_only: 
+        auto_refresh: 
+        trigger_auto_refresh: 
+        visible: true
+        type: DialogFieldTextBox
+        resource_action:
+          action: 
+          resource_type: DialogField
+          ae_namespace: 
+          ae_class: 
+          ae_instance: 
+          ae_message: 
+          ae_attributes: {}
+        dialog_field_responders: []
+      - name: param_end_range
+        description: Endine IP for DHCP range
+        data_type: string
+        notes: 
+        notes_display: 
+        display: edit
+        display_method: 
+        display_method_options: {}
+        required: true
+        required_method: 
+        required_method_options: {}
+        default_value: 192.168.99.200
+        values: 
+        values_method: 
+        values_method_options: {}
+        options:
+          :protected: false
+        label: OpenStack Private Network Range Ending IP
+        position: 8
+        validator_type: 
+        validator_rule: 
+        reconfigurable: true
+        dynamic: 
+        show_refresh_button: 
+        load_values_on_init: 
+        read_only: 
+        auto_refresh: 
+        trigger_auto_refresh: 
+        visible: true
+        type: DialogFieldTextBox
+        resource_action:
+          action: 
+          resource_type: DialogField
+          ae_namespace: 
+          ae_class: 
+          ae_instance: 
+          ae_message: 
+          ae_attributes: {}
+        dialog_field_responders: []
       - name: param_openstack_user
-        description: ''
+        description: User to authenticate
         data_type: string
         notes: 
         notes_display: 
@@ -286,8 +443,8 @@
         values_method_options: {}
         options:
           :protected: true
-        label: OpenStack Admin User
-        position: 5
+        label: OpenStack User
+        position: 9
         validator_type: 
         validator_rule: 
         reconfigurable: true
@@ -325,8 +482,8 @@
         values_method_options: {}
         options:
           :protected: true
-        label: OpenStack Admin User Password
-        position: 6
+        label: OpenStack User Password
+        position: 10
         validator_type: 
         validator_rule: 
         reconfigurable: true
@@ -365,7 +522,7 @@
         options:
           :protected: true
         label: OpenStack Auth URL
-        position: 7
+        position: 11
         validator_type: 
         validator_rule: 
         reconfigurable: true
@@ -397,14 +554,14 @@
         required: true
         required_method: 
         required_method_options: {}
-        default_value: "$encrypted$"
+        default_value: admin
         values: 
         values_method: 
         values_method_options: {}
         options:
           :protected: true
         label: OpenStack Admin User Tenant
-        position: 8
+        position: 12
         validator_type: 
         validator_rule: 
         reconfigurable: true
@@ -443,7 +600,46 @@
         options:
           :protected: true
         label: CA Certificate
-        position: 9
+        position: 13
+        validator_type: 
+        validator_rule: 
+        reconfigurable: true
+        dynamic: 
+        show_refresh_button: 
+        load_values_on_init: 
+        read_only: 
+        auto_refresh: 
+        trigger_auto_refresh: 
+        visible: false
+        type: DialogFieldTextBox
+        resource_action:
+          action: 
+          resource_type: DialogField
+          ae_namespace: 
+          ae_class: 
+          ae_instance: 
+          ae_message: 
+          ae_attributes: {}
+        dialog_field_responders: []
+      - name: param_dns_server
+        description: DNS Server for internal network
+        data_type: string
+        notes: 
+        notes_display: 
+        display: edit
+        display_method: 
+        display_method_options: {}
+        required: true
+        required_method: 
+        required_method_options: {}
+        default_value: 
+        values: 
+        values_method: 
+        values_method_options: {}
+        options:
+          :protected: true
+        label: DNS Server
+        position: 15
         validator_type: 
         validator_rule: 
         reconfigurable: true
