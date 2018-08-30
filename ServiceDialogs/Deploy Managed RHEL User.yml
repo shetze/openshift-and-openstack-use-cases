@@ -225,7 +225,7 @@
         dialog_field_responders: []
       - name: param_allow_sudo
         description: Add user to Sudoers
-        data_type: 
+        data_type: string
         notes: 
         notes_display: 
         display: edit
@@ -234,7 +234,7 @@
         required: true
         required_method: 
         required_method_options: {}
-        default_value: 'True'
+        default_value: 'False'
         values:
         - - 'False'
           - 'False'
@@ -242,7 +242,9 @@
           - 'True'
         values_method: 
         values_method_options: {}
-        options: {}
+        options:
+          :sort_by: description
+          :sort_order: ascending
         label: Allow SUDO
         position: 4
         validator_type: 
@@ -276,7 +278,7 @@
         required: true
         required_method: 
         required_method_options: {}
-        default_value: 'admin'
+        default_value: admin
         values: 
         values_method: 
         values_method_options: {}
@@ -315,7 +317,7 @@
         required: true
         required_method: 
         required_method_options: {}
-        default_value: ''
+        default_value: 
         values: 
         values_method: 
         values_method_options: {}
@@ -354,7 +356,7 @@
         required: true
         required_method: 
         required_method_options: {}
-        default_value: 'admin'
+        default_value: admin
         values: 
         values_method: 
         values_method_options: {}
@@ -423,7 +425,7 @@
           ae_attributes: {}
         dialog_field_responders: []
         values: 
-      - name: param_openstack_ip
+      - name: param_openstack_auth_url
         description: IP Address or Hostname of OpenStack API
         data_type: string
         notes: 
@@ -434,13 +436,13 @@
         required: true
         required_method: 
         required_method_options: {}
-        default_value: 144.76.56.119
+        default_value: 
         values: 
         values_method: 
         values_method_options: {}
         options:
           :protected: false
-        label: OpenStack API IP
+        label: OpenStack Auth URL
         position: 9
         validator_type: 
         validator_rule: 
@@ -581,47 +583,6 @@
           ae_attributes: {}
         dialog_field_responders: []
         values: 
-      - name: param_instance_network
-        description: Private or Internal OpenStack Network for Instance
-        data_type: string
-        notes: 
-        notes_display: 
-        display: edit
-        display_method: 
-        display_method_options: {}
-        required: true
-        required_method: 
-        required_method_options: {}
-        default_value: ''
-        values_method: 
-        values_method_options: {}
-        options:
-          :sort_by: description
-          :sort_order: ascending
-          :force_multi_value: false
-        label: Instance Network
-        position: 13
-        validator_type: 
-        validator_rule: 
-        reconfigurable: true
-        dynamic: true
-        show_refresh_button: false
-        load_values_on_init: false
-        read_only: false
-        auto_refresh: false
-        trigger_auto_refresh: false
-        visible: true
-        type: DialogFieldDropDownList
-        resource_action:
-          action: 
-          resource_type: DialogField
-          ae_namespace: Integration/DynamicDialogs
-          ae_class: Methods
-          ae_instance: list_networks
-          ae_message: 
-          ae_attributes: {}
-        dialog_field_responders: []
-        values: 
       - name: param_instance_security_group
         description: Security Group to be used for Instance
         data_type: string
@@ -634,7 +595,6 @@
         required_method: 
         required_method_options: {}
         default_value: ''
-        values: 
         values_method: 
         values_method_options: {}
         options:
@@ -642,7 +602,7 @@
           :sort_order: ascending
           :force_multi_value: false
         label: Instance Security Group
-        position: 14
+        position: 13
         validator_type: 
         validator_rule: 
         reconfigurable: true
@@ -663,7 +623,47 @@
           ae_message: 
           ae_attributes: {}
         dialog_field_responders: []
-  - description:
+        values: 
+      - name: param_cacert
+        description: Path to CA Certificate for HTTPS
+        data_type: string
+        notes: 
+        notes_display: 
+        display: edit
+        display_method: 
+        display_method_options: {}
+        required: true
+        required_method: 
+        required_method_options: {}
+        default_value: /etc/ssl/certs/ca-bundle.crt
+        values: 
+        values_method: 
+        values_method_options: {}
+        options:
+          :protected: true
+        label: CA Certificate
+        position: 14
+        validator_type: 
+        validator_rule: 
+        reconfigurable: true
+        dynamic: 
+        show_refresh_button: 
+        load_values_on_init: 
+        read_only: 
+        auto_refresh: 
+        trigger_auto_refresh: 
+        visible: false
+        type: DialogFieldTextBox
+        resource_action:
+          action: 
+          resource_type: DialogField
+          ae_namespace: 
+          ae_class: 
+          ae_instance: 
+          ae_message: 
+          ae_attributes: {}
+        dialog_field_responders: []
+  - description: 
     display: edit
     label: Satellite information
     display_method: 
@@ -688,7 +688,7 @@
         required: true
         required_method: 
         required_method_options: {}
-        default_value: 144.76.134.226
+        default_value: 
         values: 
         values_method: 
         values_method_options: {}
@@ -727,7 +727,7 @@
         required: true
         required_method: 
         required_method_options: {}
-        default_value: sat6-master
+        default_value: 
         values: 
         values_method: 
         values_method_options: {}
@@ -766,7 +766,7 @@
         required: true
         required_method: 
         required_method_options: {}
-        default_value: novalocal
+        default_value: 
         values: 
         values_method: 
         values_method_options: {}
@@ -805,7 +805,7 @@
         required: true
         required_method: 
         required_method_options: {}
-        default_value: RedHat
+        default_value: 
         values: 
         values_method: 
         values_method_options: {}
@@ -925,7 +925,7 @@
         required: true
         required_method: 
         required_method_options: {}
-        default_value: 'True'
+        default_value: 'False'
         values:
         - - 'False'
           - 'False'
@@ -945,7 +945,7 @@
         read_only: 
         auto_refresh: 
         trigger_auto_refresh: 
-        visible: true
+        visible: false
         type: DialogFieldDropDownList
         resource_action:
           action: 
@@ -967,7 +967,7 @@
         required: true
         required_method: 
         required_method_options: {}
-        default_value: KT_RedHat_unstaged_rhel7_base_3
+        default_value: 
         values: 
         values_method: 
         values_method_options: {}
@@ -984,7 +984,7 @@
         read_only: 
         auto_refresh: 
         trigger_auto_refresh: 
-        visible: true
+        visible: false
         type: DialogFieldTextBox
         resource_action:
           action: 
@@ -1023,7 +1023,7 @@
         read_only: 
         auto_refresh: 
         trigger_auto_refresh: 
-        visible: true
+        visible: false
         type: DialogFieldTextBox
         resource_action:
           action: 
@@ -1062,7 +1062,7 @@
         read_only: 
         auto_refresh: 
         trigger_auto_refresh: 
-        visible: true
+        visible: false
         type: DialogFieldTextBox
         resource_action:
           action: 

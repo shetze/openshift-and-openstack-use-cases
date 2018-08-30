@@ -1,11 +1,11 @@
 ---
 - description: 
   buttons: submit,cancel
-  label: Create Unmanaged Project
+  label: Retire Managed RHEL instance user
   dialog_tabs:
   - description: 
     display: edit
-    label: Basic Information
+    label: OpenStack Information
     display_method: 
     display_method_options: 
     position: 0
@@ -64,8 +64,8 @@
       display_method_options: 
       position: 1
       dialog_fields:
-      - name: param_project
-        description: Name of OpenStack Project to Create
+      - name: param_ssh_user
+        description: SSH User to Access Instance
         data_type: string
         notes: 
         notes_display: 
@@ -75,13 +75,13 @@
         required: true
         required_method: 
         required_method_options: {}
-        default_value: ''
+        default_value: cloud-user
         values: 
         values_method: 
         values_method_options: {}
         options:
           :protected: false
-        label: OpenStack Project Name
+        label: SSH User
         position: 0
         validator_type: 
         validator_rule: 
@@ -92,7 +92,7 @@
         read_only: 
         auto_refresh: 
         trigger_auto_refresh: 
-        visible: true
+        visible: false
         type: DialogFieldTextBox
         resource_action:
           action: 
@@ -103,86 +103,8 @@
           ae_message: 
           ae_attributes: {}
         dialog_field_responders: []
-      - name: param_user
-        description: Name of OpenStack User to Create
-        data_type: string
-        notes: 
-        notes_display: 
-        display: edit
-        display_method: 
-        display_method_options: {}
-        required: true
-        required_method: 
-        required_method_options: {}
-        default_value: ''
-        values: 
-        values_method: 
-        values_method_options: {}
-        options:
-          :protected: false
-        label: OpenStack User Name
-        position: 1
-        validator_type: 
-        validator_rule: 
-        reconfigurable: true
-        dynamic: 
-        show_refresh_button: 
-        load_values_on_init: 
-        read_only: 
-        auto_refresh: 
-        trigger_auto_refresh: 
-        visible: true
-        type: DialogFieldTextBox
-        resource_action:
-          action: 
-          resource_type: DialogField
-          ae_namespace: 
-          ae_class: 
-          ae_instance: 
-          ae_message: 
-          ae_attributes: {}
-        dialog_field_responders: []
-      - name: param_passwd
-        description: Password for the OpenStack User
-        data_type: string
-        notes: 
-        notes_display: 
-        display: edit
-        display_method: 
-        display_method_options: {}
-        required: true
-        required_method: 
-        required_method_options: {}
-        default_value: ''
-        values: 
-        values_method: 
-        values_method_options: {}
-        options:
-          :protected: true
-        label: OpenStack User Password
-        position: 2
-        validator_type: 
-        validator_rule: 
-        reconfigurable: true
-        dynamic: 
-        show_refresh_button: 
-        load_values_on_init: 
-        read_only: 
-        auto_refresh: 
-        trigger_auto_refresh: 
-        visible: true
-        type: DialogFieldTextBox
-        resource_action:
-          action: 
-          resource_type: DialogField
-          ae_namespace: 
-          ae_class: 
-          ae_instance: 
-          ae_message: 
-          ae_attributes: {}
-        dialog_field_responders: []
-      - name: param_role
-        description: Name of the Role for the User in Project
+      - name: param_debug
+        description: Enable debug
         data_type: 
         notes: 
         notes_display: 
@@ -192,16 +114,16 @@
         required: true
         required_method: 
         required_method_options: {}
-        default_value: _member_
+        default_value: 'True'
         values:
-        - - _member_
-          - _member_
-        - - admin
-          - admin
+        - - 'False'
+          - 'False'
+        - - 'True'
+          - 'True'
         values_method: 
         values_method_options: {}
         options: {}
-        label: OpenStack User Role
+        label: Debug
         position: 3
         validator_type: 
         validator_rule: 
@@ -223,9 +145,9 @@
           ae_message: 
           ae_attributes: {}
         dialog_field_responders: []
-      - name: param_tier
-        description: 'Tier for quota: free, small, medium or large'
-        data_type: 
+      - name: param_openstack_user
+        description: User to authenticate
+        data_type: string
         notes: 
         notes_display: 
         display: edit
@@ -234,21 +156,14 @@
         required: true
         required_method: 
         required_method_options: {}
-        default_value: free
-        values:
-        - - free
-          - free
-        - - large
-          - large
-        - - medium
-          - medium
-        - - small
-          - small
+        default_value: 
+        values: 
         values_method: 
         values_method_options: {}
-        options: {}
-        label: OpenStack Project Tier
-        position: 4
+        options:
+          :protected: false
+        label: OpenStack User
+        position: 5
         validator_type: 
         validator_rule: 
         reconfigurable: true
@@ -259,7 +174,7 @@
         auto_refresh: 
         trigger_auto_refresh: 
         visible: true
-        type: DialogFieldDropDownList
+        type: DialogFieldTextBox
         resource_action:
           action: 
           resource_type: DialogField
@@ -269,8 +184,47 @@
           ae_message: 
           ae_attributes: {}
         dialog_field_responders: []
-      - name: param_openstack_user
-        description: ''
+      - name: param_openstack_passwd
+        description: Password for OpenStack User
+        data_type: string
+        notes: 
+        notes_display: 
+        display: edit
+        display_method: 
+        display_method_options: {}
+        required: true
+        required_method: 
+        required_method_options: {}
+        default_value: 
+        values: 
+        values_method: 
+        values_method_options: {}
+        options:
+          :protected: true
+        label: OpenStack User Password
+        position: 6
+        validator_type: 
+        validator_rule: 
+        reconfigurable: true
+        dynamic: 
+        show_refresh_button: 
+        load_values_on_init: 
+        read_only: 
+        auto_refresh: 
+        trigger_auto_refresh: 
+        visible: true
+        type: DialogFieldTextBox
+        resource_action:
+          action: 
+          resource_type: DialogField
+          ae_namespace: 
+          ae_class: 
+          ae_instance: 
+          ae_message: 
+          ae_attributes: {}
+        dialog_field_responders: []
+      - name: param_instance_ssh_key_name
+        description: Keypair to use for ssh access
         data_type: string
         notes: 
         notes_display: 
@@ -285,86 +239,8 @@
         values_method: 
         values_method_options: {}
         options:
-          :protected: true
-        label: OpenStack Admin User
-        position: 5
-        validator_type: 
-        validator_rule: 
-        reconfigurable: true
-        dynamic: 
-        show_refresh_button: 
-        load_values_on_init: 
-        read_only: 
-        auto_refresh: 
-        trigger_auto_refresh: 
-        visible: false
-        type: DialogFieldTextBox
-        resource_action:
-          action: 
-          resource_type: DialogField
-          ae_namespace: 
-          ae_class: 
-          ae_instance: 
-          ae_message: 
-          ae_attributes: {}
-        dialog_field_responders: []
-      - name: param_openstack_passwd
-        description: ''
-        data_type: string
-        notes: 
-        notes_display: 
-        display: edit
-        display_method: 
-        display_method_options: {}
-        required: true
-        required_method: 
-        required_method_options: {}
-        default_value: 
-        values: 
-        values_method: 
-        values_method_options: {}
-        options:
-          :protected: true
-        label: OpenStack Admin User Password
-        position: 6
-        validator_type: 
-        validator_rule: 
-        reconfigurable: true
-        dynamic: 
-        show_refresh_button: 
-        load_values_on_init: 
-        read_only: 
-        auto_refresh: 
-        trigger_auto_refresh: 
-        visible: false
-        type: DialogFieldTextBox
-        resource_action:
-          action: 
-          resource_type: DialogField
-          ae_namespace: 
-          ae_class: 
-          ae_instance: 
-          ae_message: 
-          ae_attributes: {}
-        dialog_field_responders: []
-      - name: param_openstack_auth_url
-        description: 'IP Address or Hostname of OpenStack API'
-        data_type: string
-        notes: 
-        notes_display: 
-        display: edit
-        display_method: 
-        display_method_options: {}
-        required: true
-        required_method: 
-        required_method_options: {}
-        default_value: 
-        values: 
-        values_method: 
-        values_method_options: {}
-        options:
-          :protected: true
-        label: OpenStack Auth URL
+          :protected: false
+        label: Instance SSH Keypair
         position: 7
         validator_type: 
         validator_rule: 
@@ -387,7 +263,7 @@
           ae_attributes: {}
         dialog_field_responders: []
       - name: param_openstack_project
-        description: ''
+        description: Project of the Instance
         data_type: string
         notes: 
         notes_display: 
@@ -397,14 +273,55 @@
         required: true
         required_method: 
         required_method_options: {}
-        default_value: "$encrypted$"
+        default_value: ''
+        values_method: 
+        values_method_options: {}
+        options:
+          :sort_by: description
+          :sort_order: ascending
+          :force_multi_value: false
+        label: OpenStack Project
+        position: 8
+        validator_type: 
+        validator_rule: 
+        reconfigurable: false
+        dynamic: true
+        show_refresh_button: false
+        load_values_on_init: false
+        read_only: false
+        auto_refresh: false
+        trigger_auto_refresh: false
+        visible: true
+        type: DialogFieldDropDownList
+        resource_action:
+          action: 
+          resource_type: DialogField
+          ae_namespace: Integration/DynamicDialogs
+          ae_class: Methods
+          ae_instance: list_tenants
+          ae_message: 
+          ae_attributes: {}
+        dialog_field_responders: []
+        values: 
+      - name: param_openstack_auth_url
+        description: IP Address or Hostname of OpenStack API
+        data_type: string
+        notes: 
+        notes_display: 
+        display: edit
+        display_method: 
+        display_method_options: {}
+        required: true
+        required_method: 
+        required_method_options: {}
+        default_value: 
         values: 
         values_method: 
         values_method_options: {}
         options:
-          :protected: true
-        label: OpenStack Admin User Tenant
-        position: 8
+          :protected: false
+        label: OpenStack Auth URL
+        position: 9
         validator_type: 
         validator_rule: 
         reconfigurable: true
@@ -425,6 +342,88 @@
           ae_message: 
           ae_attributes: {}
         dialog_field_responders: []
+      - name: param_instance_name
+        description: Name of Instance
+        data_type: string
+        notes: 
+        notes_display: 
+        display: edit
+        display_method: 
+        display_method_options: {}
+        required: true
+        required_method: 
+        required_method_options: {}
+        default_value: ''
+        values: 
+        values_method: 
+        values_method_options: {}
+        options:
+          :protected: false
+          :sort_order: ascending
+          :force_multi_value: false
+        label: Instance Name
+        position: 10
+        validator_type: 
+        validator_rule: 
+        reconfigurable: true
+        dynamic: true
+        show_refresh_button: 
+        load_values_on_init: 
+        read_only: 
+        auto_refresh: 
+        trigger_auto_refresh: 
+        visible: true
+        type: DialogFieldDropDownList
+        resource_action:
+          action: 
+          resource_type: DialogField
+          ae_namespace: Integration/DynamicDialogs
+          ae_class: Methods
+          ae_instance: list_instances
+          ae_message: 
+          ae_attributes: {}
+        dialog_field_responders: []
+        values: 
+      - name: param_instance_network
+        description: OpenStack Instance Network
+        data_type: 
+        notes: 
+        notes_display: 
+        display: edit
+        display_method: 
+        display_method_options: {}
+        required: true
+        required_method: 
+        required_method_options: {}
+        default_value: 
+        values_method: 
+        values_method_options: {}
+        options:
+          :sort_by: description
+          :sort_order: ascending
+        label: Instance Network
+        position: 11
+        validator_type: 
+        validator_rule: 
+        reconfigurable: true
+        dynamic: true
+        show_refresh_button: 
+        load_values_on_init: 
+        read_only: 
+        auto_refresh: 
+        trigger_auto_refresh: 
+        visible: true
+        type: DialogFieldDropDownList
+        resource_action:
+          action: 
+          resource_type: DialogField
+          ae_namespace: Integration/DynamicDialogs
+          ae_class: Methods
+          ae_instance: list_networks
+          ae_message: 
+          ae_attributes: {}
+        dialog_field_responders: []
+        values: 
       - name: param_cacert
         description: Path to CA Certificate for HTTPS
         data_type: string
@@ -443,7 +442,46 @@
         options:
           :protected: true
         label: CA Certificate
-        position: 9
+        position: 12
+        validator_type: 
+        validator_rule: 
+        reconfigurable: true
+        dynamic: 
+        show_refresh_button: 
+        load_values_on_init: 
+        read_only: 
+        auto_refresh: 
+        trigger_auto_refresh: 
+        visible: false
+        type: DialogFieldTextBox
+        resource_action:
+          action: 
+          resource_type: DialogField
+          ae_namespace: 
+          ae_class: 
+          ae_instance: 
+          ae_message: 
+          ae_attributes: {}
+        dialog_field_responders: []
+      - name: param_satellite_ip
+        description: IP Address or Hostname of Satellite Master Server
+        data_type: string
+        notes: 
+        notes_display: 
+        display: edit
+        display_method: 
+        display_method_options: {}
+        required: true
+        required_method: 
+        required_method_options: {}
+        default_value: 
+        values: 
+        values_method: 
+        values_method_options: {}
+        options:
+          :protected: false
+        label: Satellite Server IP
+        position: 13
         validator_type: 
         validator_rule: 
         reconfigurable: true
