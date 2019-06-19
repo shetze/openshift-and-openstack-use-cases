@@ -20,10 +20,6 @@
       name: osp-create-instance
     tags: ['deploy']
 
-  - import_role:
-      name: osp-inventory-instance
-    tags: ['inventory']
-
 - name: Create user account
   hosts: instance
   become: yes
