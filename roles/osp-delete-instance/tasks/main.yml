@@ -5,4 +5,9 @@
 
 - name: Delete instance
   shell: openstack server delete {{ instance_name }}
+  register: delete_instance
   when: server_show.rc == 0
+
+- name: Check Instance Delete results
+  msg: "Instance {{ instance_name }} deleted successfully"
+  when: delete_instance.rc == 0
