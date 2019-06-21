@@ -1,7 +1,7 @@
 ---
 - name: Remove instance
   hosts: localhost
-  become: yes
+  become: no
   gather_facts: no
   remote_user: "{{ ssh_user }}"
   environment:
