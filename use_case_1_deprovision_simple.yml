@@ -1,6 +1,6 @@
 ---
 - name: Remove instance
-  hosts: "{{ instance_name }}"
+  hosts: localhost
   become: yes
   gather_facts: no
   remote_user: "{{ ssh_user }}"
