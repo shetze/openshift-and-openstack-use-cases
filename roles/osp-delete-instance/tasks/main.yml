@@ -9,5 +9,6 @@
   when: server_show.rc == 0
 
 - name: Check Instance Delete results
-  msg: "Instance {{ instance_name }} deleted successfully"
+  debug:
+    msg: "Instance {{ instance_name }} deleted successfully"
   when: delete_instance.rc == 0
