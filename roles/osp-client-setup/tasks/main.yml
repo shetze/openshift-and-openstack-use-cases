@@ -1,5 +1,5 @@
 - name: Enable OpenStack Client Repo for RHEL
-  command: "subscription-manager repos --enable=rhel-7-server-openstack-{{ openstack_version }}-tools-rpms"
+  command: "subscription-manager repos --enable={{openstack_tools_repo}}"
   retries: 5
   delay: 5
 
