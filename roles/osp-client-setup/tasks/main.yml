@@ -9,7 +9,7 @@
     state: latest
   with_items:
     - python-openstackclient
-    - python-heatclient 
+    #- python-heatclient 
 
 - name: Setup Keystone Auth File
   template:
