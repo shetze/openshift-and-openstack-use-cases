@@ -1,6 +1,6 @@
 ---
 - name: Create user account
-  hosts: instance
+  hosts: {{ target }}
   become: yes
   gather_facts: false
   remote_user: "{{ ssh_user }}"
