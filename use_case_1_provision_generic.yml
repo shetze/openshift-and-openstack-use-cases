@@ -21,7 +21,7 @@
     tags: ['deploy']
 
 - name: Create user account
-  hosts: instance
+  hosts: {{ instance_name }}
   become: yes
   gather_facts: false
   remote_user: "{{ ssh_user }}"
