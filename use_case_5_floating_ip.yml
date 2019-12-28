@@ -1,0 +1,11 @@
+---
+- name: Create user account
+  hosts: localhost
+  become: yes
+  gather_facts: false
+  remote_user: "{{ ssh_user }}"
+
+  tasks:
+  - import_role:
+      name: osp-add-floating-ip
+    tags: ['floating']
