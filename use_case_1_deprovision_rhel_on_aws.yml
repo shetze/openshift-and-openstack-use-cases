@@ -20,6 +20,7 @@
     - name: tag terminated as garbage
       amazon.aws.ec2_tag:
         region: eu-central-1
+        resource: '{{ item.id }}'
         state: 'present'
         tags:
           purpose: garbage
