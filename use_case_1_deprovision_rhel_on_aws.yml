@@ -8,7 +8,7 @@
         region: eu-central-1
         instance_tags:
           purpose: gobuilder
-        state: 'present'
+        state: 'running'
       register: ec2
 
     - name: Cleanup RHEL Instance on AWS
