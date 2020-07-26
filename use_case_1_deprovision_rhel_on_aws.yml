@@ -6,4 +6,5 @@
     - name: Cleanup RHEL Instance on AWS
       amazon.aws.ec2:
         state: 'absent'
-        instance_ids: '{{ instance_id }}'
+        instance_tags:
+          Name: gobuilder
