@@ -20,9 +20,8 @@
     - name: tag terminated as garbage
       amazon.aws.ec2_tag:
         region: eu-central-1
-        resource: '{{ ec2_id }}'
+        resource: '{{ ec2.instance_ids }}'
         state: 'present'
         tags:
           purpose: garbage
-      loop: '{{ ec2.instance_ids }}'
 
