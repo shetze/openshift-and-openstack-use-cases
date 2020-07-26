@@ -9,6 +9,7 @@
         instance_type: t2.micro
         image: ami-07dfba995513840b5
         region: eu-central-1
+        group: webserver
         wait: yes
         wait_timeout: 500
         count: 1
