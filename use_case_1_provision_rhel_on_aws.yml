@@ -16,6 +16,8 @@
         wait_timeout: 500
         instance_tags:
           purpose: gobuilder
-        count: 1
+        exact_count: 1
+        count_tag:
+          purpose: gobuilder
         vpc_subnet_id: subnet-be9bd9c4
         assign_public_ip: yes
