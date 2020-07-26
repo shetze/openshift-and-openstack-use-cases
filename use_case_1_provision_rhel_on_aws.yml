@@ -8,7 +8,7 @@
         key_name: aws-key
         instance_type: t2.micro
         image: ami-07dfba995513840b5
-        region: eu-central-1b
+        region: eu-central-1
         wait: yes
         wait_timeout: 500
         group: webserver
