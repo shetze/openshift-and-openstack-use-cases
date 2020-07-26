@@ -15,6 +15,13 @@
       amazon.aws.ec2:
         region: eu-central-1
         state: 'absent'
-        instance_tags:
-          purpose: garbage
         instance_ids: '{{ ec2.instance_ids }}'
+
+    - name: tag terminated as garbage
+      amazon.aws.ec2_tag:
+        region: eu-central-1
+        state: 'present'
+        tags:
+          purpose: garbage
+      loop: '{{ ec2.instance_ids }}'
+
