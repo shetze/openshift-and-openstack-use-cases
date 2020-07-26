@@ -3,9 +3,16 @@
   gather_facts: False
 
   tasks:
+    - name: Iterate Instances
+      amazon.aws.ec2:
+        region: eu-central-1
+        instance_tags:
+          purpose: gobuilder
+        state: running
+      register: ec2
+
     - name: Cleanup RHEL Instance on AWS
       amazon.aws.ec2:
         region: eu-central-1
         state: 'absent'
-        instance_ids:
-          - "{{ ec2_id }}"
+        instance_ids: '{{ ec2.instance_ids }}'
