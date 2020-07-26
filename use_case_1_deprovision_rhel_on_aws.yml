@@ -4,7 +4,7 @@
 
   tasks:
     - name: Cleanup RHEL Instance on AWS
-      hosts: "Development Inventory"
+      hosts: all
       use_fact_cache: True
       amazon.aws.ec2:
         region: eu-central-1
