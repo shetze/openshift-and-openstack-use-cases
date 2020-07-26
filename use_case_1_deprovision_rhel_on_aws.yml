@@ -7,5 +7,4 @@
       amazon.aws.ec2:
         region: eu-central-1
         state: 'absent'
-        instance_tags:
-          Name: gobuilder
+        instance_ids: i-02d7b512c293cb11f
