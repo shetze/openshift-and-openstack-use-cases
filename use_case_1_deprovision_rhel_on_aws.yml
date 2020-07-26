@@ -14,5 +14,7 @@
     - name: Cleanup RHEL Instance on AWS
       amazon.aws.ec2:
         region: eu-central-1
+        instance_tags:
+          purpose: garbage
         state: 'absent'
         instance_ids: '{{ ec2.instance_ids }}'
