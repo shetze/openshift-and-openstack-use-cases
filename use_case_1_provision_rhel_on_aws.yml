@@ -11,7 +11,6 @@
         region: eu-central-1
         wait: yes
         wait_timeout: 500
-        group: webserver
         count: 1
         vpc_subnet_id: subnet-be9bd9c4
         assign_public_ip: yes
