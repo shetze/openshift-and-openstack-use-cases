@@ -5,6 +5,7 @@
   tasks:
     - name: Cleanup RHEL Instance on AWS
       amazon.aws.ec2:
+        region: eu-central-1
         state: 'absent'
         instance_tags:
           Name: gobuilder
