@@ -9,4 +9,5 @@
       amazon.aws.ec2:
         region: eu-central-1
         state: 'absent'
-        instance_ids: {{ instance_id }}
+        instance_ids:
+          - "{{ instance_id }}"
