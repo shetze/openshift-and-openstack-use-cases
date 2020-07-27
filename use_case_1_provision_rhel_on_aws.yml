@@ -25,7 +25,8 @@
 
     - name: Start RHEL Instance on AWS
       amazon.aws.ec2:
-        instance_id: '{{ ec2.instance_ids }}'
+        instance_tags:
+          purpose: gobuilder
         region: eu-central-1
         state: "running"
         wait: True
