@@ -25,9 +25,10 @@
 
     - name: Start RHEL Instance on AWS
       amazon.aws.ec2:
-        instance_ids: '{{ ec2.instance_ids }}'
+        instance_id: '{{ item }}'
         region: eu-central-1
         state: "running"
         wait: True
         vpc_subnet_id: subnet-be9bd9c4
         assign_public_ip: yes
+      loop: '{{ ec2.instance_ids }}'
