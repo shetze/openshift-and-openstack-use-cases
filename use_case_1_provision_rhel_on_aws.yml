@@ -21,4 +21,13 @@
           purpose: gobuilder
         vpc_subnet_id: subnet-be9bd9c4
         assign_public_ip: yes
+      register: ec2
+
+    - name: Start RHEL Instance on AWS
+      amazon.aws.ec2:
+        instance_ids: '{{ ec2.instance_ids }}'
+        region: eu-central-1
         state: "running"
+        wait: True
+        vpc_subnet_id: subnet-be9bd9c4
+        assign_public_ip: yes
