@@ -21,3 +21,4 @@
           purpose: gobuilder
         vpc_subnet_id: subnet-be9bd9c4
         assign_public_ip: yes
+        state: "running"
